@@ -5,3 +5,20 @@ export type WeatherDataProps = {
   humidity: number;
   windSpeed: number;
 };
+
+export type WeatherApiProps = {
+  name: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+  };
+  weather: {
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  wind: {
+    speed: number;
+  };
+};
