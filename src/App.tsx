@@ -2,33 +2,53 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import SearchBar from "./component/SearchBar/SearchBar";
 import WeatherDashboard from "./component/WeatherDashboard/WeatherDashboard";
+import { useWeather } from "./context/WeatherContext";
 
 function App() {
   const [cityName, setCityName] = useState("");
-  const [weatherData, setWeatherData] = useState<any>();
+  const { weatherData, setWeatherData } = useWeather();
 
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const result = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${
+        const cityToFetch = cityName || localStorage.getItem("lastCity");
+        if (!cityToFetch) return;
+
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${cityToFetch}&appid=${
             import.meta.env.VITE_APP_ID
           }&units=metric`
         );
-        const data = await result.json();
-        console.log("Result", data.name);
-        setWeatherData(data);
+        const data = await response.json();
+
+        if (data.cod === 200) {
+          setWeatherData(data);
+          localStorage.setItem("lastCity", cityToFetch);
+        }
       } catch (error) {
-        console.log("Error", error);
+        console.error("Error fetching weather:", error);
       }
     };
+
     fetchWeather();
+
+    //set the interval to implement the API polling
+    const Interval = setInterval(() => {
+      console.log("API is fetching after 30 sec");
+      fetchWeather();
+    }, 30000);
+
+    //clean up the interval to avoid any errors further.
+    return () => {
+      clearInterval(Interval);
+    };
   }, [cityName]);
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setCityName(e.target.value);
   };
+
   return (
     <>
       <SearchBar cityName={cityName} onChange={handleCityChange} />
