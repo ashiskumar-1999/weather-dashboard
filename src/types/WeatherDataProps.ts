@@ -4,6 +4,8 @@ export type WeatherDataProps = {
   feelsLikeTemprature: number;
   humidity: number;
   windSpeed: number;
+  weatherIcon: string;
+  weatherType: string;
 };
 
 export type WeatherApiProps = {

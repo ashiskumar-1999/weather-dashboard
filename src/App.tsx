@@ -55,6 +55,8 @@ function App() {
       {weatherData && weatherData.main && weatherData.wind && (
         <WeatherDashboard
           cityName={weatherData.name}
+          weatherType={weatherData.weather[0].main}
+          weatherIcon={weatherData.weather[0].icon}
           temprature={weatherData.main.temp}
           feelsLikeTemprature={weatherData.main.feels_like}
           humidity={weatherData.main.humidity}
