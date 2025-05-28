@@ -10,6 +10,7 @@ const WeatherDashboard = ({
   windSpeed,
   weatherType,
   weatherIcon,
+  unitMetric,
 }: WeatherDataProps) => {
   return (
     <div className={styles.gridContainer}>
@@ -26,7 +27,10 @@ const WeatherDashboard = ({
             <p className={styles.text}>{weatherType}</p>
           </div>
           <div>
-            <h1 className={styles.heading}>{temprature}</h1>
+            <h1 className={styles.heading}>
+              {temprature}
+              {unitMetric === "metric" ? "℃" : "℉"}
+            </h1>
             <p className={styles.text}>Feels like {feelsLikeTemprature}</p>
           </div>
         </div>
