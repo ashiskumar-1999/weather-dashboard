@@ -1,6 +1,7 @@
 import styles from "./WeatherDashboard.module.css";
 import type { WeatherDataProps } from "../../types";
 import { Wind, Droplet } from "lucide-react";
+import convertToLocalDate from "../../utils/convertToLocalDate";
 
 const WeatherDashboard = ({
   cityName,
@@ -11,7 +12,9 @@ const WeatherDashboard = ({
   weatherType,
   weatherIcon,
   unitMetric,
+  foreCastData,
 }: WeatherDataProps) => {
+  console.log("ForecastData:", foreCastData);
   return (
     <div className={styles.gridContainer}>
       <div className={`${styles.currentWeather} ${styles.effect}`}>
@@ -45,7 +48,21 @@ const WeatherDashboard = ({
           </div>
         </div>
       </div>
-      <div className={`${styles.map} ${styles.effect}`}></div>
+      <div className={`${styles.forecast} ${styles.effect}`}>
+        <div className={styles.forecastContainer}>
+          {foreCastData?.map((data: any) => (
+            <div>
+              <p className={styles.text}>{convertToLocalDate(data.dt)}</p>
+              <img
+                src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                alt="weather-icon"
+                className={styles.image}
+              />
+              <p className={styles.text}>{data.weather[0].main}</p>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className={`${styles.forecast} ${styles.effect}`}></div>
     </div>
   );

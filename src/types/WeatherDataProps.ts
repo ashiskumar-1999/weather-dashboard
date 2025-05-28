@@ -7,6 +7,16 @@ export type WeatherDataProps = {
   weatherIcon: string;
   weatherType: string;
   unitMetric: string;
+  foreCastData?: {
+    dt: number;
+    main: {
+      temp: number;
+    };
+    weather: {
+      main: string;
+      icon: string;
+    };
+  }[];
 };
 
 export type WeatherApiProps = {
@@ -27,7 +37,7 @@ export type WeatherApiProps = {
 };
 
 export type WeatherForeCastProps = {
-  list: {
+  list: Array<{
     dt: number;
     main: {
       temp: number;
@@ -36,5 +46,5 @@ export type WeatherForeCastProps = {
       main: string;
       icon: string;
     };
-  }[];
+  }>;
 };
