@@ -2,8 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #0e73ae;
-  /* background: linear-gradient(to right, #00a6f4 50%, #00bcff 100%); */
+  background-image: url("/public/background.jpg");
   background-size: cover;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
