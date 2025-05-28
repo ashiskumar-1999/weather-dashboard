@@ -66,16 +66,25 @@
   text-align: center;
 }
 
+.button {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+.list {
+  color: white;
+  margin: 20px;
+  padding-top: 10px;
+}
+
 @media (max-width: 767px) {
   .gridContainer {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     justify-content: center;
-  }
-
-  .currentWeather,
-  .forcast {
-    grid-column: 1 / -1;
   }
 
   .forecastContainer {
@@ -96,10 +105,6 @@
 
   .currentWeather {
     grid-column: 1 / 2;
-  }
-
-  .forcast {
-    grid-column: 2 / 3;
   }
 
   .forecastContainer {

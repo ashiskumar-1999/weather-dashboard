@@ -13,6 +13,8 @@ const WeatherDashboard = ({
   weatherIcon,
   unitMetric,
   foreCastData,
+  searchHistory,
+  onClick,
 }: WeatherDataProps) => {
   return (
     <div className={styles.gridContainer}>
@@ -62,7 +64,21 @@ const WeatherDashboard = ({
           ))}
         </div>
       </div>
-      <div className={`${styles.forecast} ${styles.effect}`}></div>
+      <div className={`${styles.forecast} ${styles.effect}`}>
+        <h1 className={styles.heading}>Searched City</h1>
+        {searchHistory &&
+          searchHistory.map((data, index) => (
+            <li className={styles.list}>
+              <button
+                key={index + 1}
+                className={styles.button}
+                onClick={() => onClick(data)}
+              >
+                {data.toUpperCase()}
+              </button>
+            </li>
+          ))}
+      </div>
     </div>
   );
 };

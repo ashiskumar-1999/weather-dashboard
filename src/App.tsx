@@ -14,6 +14,34 @@ function App() {
   const [foreCast, setForeCast] = useState<WeatherForeCastProps>(); //StateVariable for the forecast
   const unit = isCelcius ? "metric" : "imperial"; // Assign the unit value to celcius/Farenhit
   const debouncedCityName = useDebounce(cityName, 700);
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
+
+  const CreateSearchHistory = (city: string) => {
+    if (city) {
+      const fetchHistory = window.localStorage.getItem("searchHistory");
+      if (fetchHistory) {
+        console.log(fetchHistory);
+        const locations = JSON.parse(fetchHistory);
+        const checkLocation = locations.includes(city);
+
+        if (!checkLocation) {
+          locations.push(city);
+          window.localStorage.setItem(
+            "searchHistory",
+            JSON.stringify(locations)
+          );
+        }
+      } else {
+        const locations = [city];
+        localStorage.setItem("searchHistory", JSON.stringify(locations));
+      }
+    }
+  };
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setCityName(e.target.value);
+  };
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -31,7 +59,9 @@ function App() {
 
         if (data.cod === 200) {
           setWeatherData(data);
+          setCityName("");
           localStorage.setItem("lastCity", cityToFetch);
+          CreateSearchHistory(debouncedCityName);
         } else {
           window.alert(`Error: ${data.message}`);
         }
@@ -75,10 +105,13 @@ function App() {
     fetchForecast();
   }, [debouncedCityName, isCelcius]);
 
-  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    setCityName(e.target.value);
-  };
+  useEffect(() => {
+    const stored = localStorage.getItem("searchHistory");
+    if (stored) {
+      const parsedArray = JSON.parse(stored);
+      setSearchHistory(parsedArray);
+    }
+  }, [debouncedCityName]);
 
   return (
     <>
@@ -100,6 +133,8 @@ function App() {
           windSpeed={convertToKmPerHour(weatherData.wind.speed, unit)}
           unitMetric={unit}
           foreCastData={foreCast?.list}
+          searchHistory={searchHistory}
+          onClick={(city: string) => setCityName(city)}
         />
       )}
     </>

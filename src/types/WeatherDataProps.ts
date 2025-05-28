@@ -7,6 +7,8 @@ export type WeatherDataProps = {
   weatherIcon: string;
   weatherType: string;
   unitMetric: string;
+  searchHistory: string[];
+  onClick: (city: string) => void;
   foreCastData?: {
     dt: number;
     main: {
