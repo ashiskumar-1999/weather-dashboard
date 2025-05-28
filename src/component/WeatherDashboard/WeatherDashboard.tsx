@@ -14,7 +14,6 @@ const WeatherDashboard = ({
   unitMetric,
   foreCastData,
 }: WeatherDataProps) => {
-  console.log("ForecastData:", foreCastData);
   return (
     <div className={styles.gridContainer}>
       <div className={`${styles.currentWeather} ${styles.effect}`}>
@@ -50,8 +49,8 @@ const WeatherDashboard = ({
       </div>
       <div className={`${styles.forecast} ${styles.effect}`}>
         <div className={styles.forecastContainer}>
-          {foreCastData?.map((data: any) => (
-            <div>
+          {foreCastData?.map((data: any, index) => (
+            <div key={index + 1}>
               <p className={styles.text}>{convertToLocalDate(data.dt)}</p>
               <img
                 src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}

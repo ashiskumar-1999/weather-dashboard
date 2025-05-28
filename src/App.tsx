@@ -13,7 +13,7 @@ function App() {
   const { weatherData, setWeatherData } = useWeather();
   const [foreCast, setForeCast] = useState<WeatherForeCastProps>(); //StateVariable for the forecast
   const unit = isCelcius ? "metric" : "imperial"; // Assign the unit value to celcius/Farenhit
-  const debouncedCityName = useDebounce(cityName, 10);
+  const debouncedCityName = useDebounce(cityName, 700);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -50,14 +50,14 @@ function App() {
     return () => {
       clearInterval(Interval);
     };
-  }, [cityName, isCelcius]);
+  }, [debouncedCityName, isCelcius]);
 
   //TODO: This is to be implemented.
 
   //useEffect to call the forecast api for 5 days.
   useEffect(() => {
     const fetchForecast = async () => {
-      const cityToFetch = cityName || localStorage.getItem("lastCity");
+      const cityToFetch = debouncedCityName || localStorage.getItem("lastCity");
       try {
         const foreCastResult = await fetch(
           `https://api.openweathermap.org/data/2.5/forecast?q=${cityToFetch}&cnt=5&appid=${
@@ -65,7 +65,6 @@ function App() {
           }&units=metric`
         );
         const forecastData = await foreCastResult.json();
-        console.log(forecastData);
         if (forecastData.cod === "200") {
           setForeCast(forecastData);
         }
@@ -74,9 +73,7 @@ function App() {
       }
     };
     fetchForecast();
-  }, [cityName, isCelcius]);
-
-  console.log("Forecast", foreCast);
+  }, [debouncedCityName, isCelcius]);
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
