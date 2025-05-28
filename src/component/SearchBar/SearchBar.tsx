@@ -9,13 +9,13 @@ type SearchBarProps = {
 const SearchBar = ({ cityName, onChange }: SearchBarProps) => {
   return (
     <div className={styles.searchbox}>
-      <Search className={styles.icon} />
       <input
         className={styles.searchbar}
         placeholder=" Search City"
         value={cityName}
         onChange={onChange}
       />
+      <Search className={styles.icon} />
     </div>
   );
 };
