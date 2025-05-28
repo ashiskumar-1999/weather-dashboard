@@ -6,6 +6,7 @@ export type WeatherDataProps = {
   windSpeed: number;
   weatherIcon: string;
   weatherType: string;
+  unitMetric: string;
 };
 
 export type WeatherApiProps = {
@@ -23,4 +24,17 @@ export type WeatherApiProps = {
   wind: {
     speed: number;
   };
+};
+
+export type WeatherForeCastProps = {
+  list: {
+    dt: number;
+    main: {
+      temp: number;
+    };
+    weather: {
+      main: string;
+      icon: string;
+    };
+  }[];
 };
