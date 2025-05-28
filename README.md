@@ -1,54 +1,36 @@
-# React + TypeScript + Vite
+# Project Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Dashboard to show the current weather of a city and related data like humidity and wind speed. It uses the OpenWeather API to fetch the data. A user can search for any city and fetch the weather. It also allows the user to switch between temperature units, i.e, Celsius and Fahrenheit.
 
-Currently, two official plugins are available:
+# Setup Local Server
+This project uses a React + Vite template as the boilerplate.  To set up this locally:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Clone the repo:
+```
+git clone https://github.com/ashiskumar-1999/weather-dashboard.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Install dependencies
 ```
+cd weather-dashboard
+npm install
+```
+
+Create an .env file at the root of the project and paste the OpenWeather API_KEY like this:
+```
+VITE_APP_ID= "YOUR_OPENWEATHER_APP_ID"
+```
+
+Now, run the local server
+```
+npm run dev
+```
+You can see at http://localhost:5173/
+
+# Tech Stack
+- Typescript
+- React
+- Vite
+- OpenWeatherAPI
+
+
