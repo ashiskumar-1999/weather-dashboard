@@ -4,11 +4,13 @@ import SearchBar from "./component/SearchBar/SearchBar";
 import WeatherDashboard from "./component/WeatherDashboard/WeatherDashboard";
 import { useWeather } from "./context/WeatherContext";
 import type { WeatherForeCastProps } from "./types";
+import convertToKmPerHour from "./utils/convertToKmPerHour";
 
 function App() {
   const [cityName, setCityName] = useState("");
   const [isCelcius, setIsCelcius] = useState(true);
   const { weatherData, setWeatherData } = useWeather();
+  //const [foreCast, setForeCast] = useState<WeatherForeCastProps>(); StateVariable for the forecast
   const unit = isCelcius ? "metric" : "imperial"; // Assign the unit value to celcius/Farenhit
 
   useEffect(() => {
@@ -47,6 +49,32 @@ function App() {
     };
   }, [cityName, isCelcius]);
 
+  //TODO: This is to be implemented.
+  /* 
+  //useEffect to call the forecast api for 5 days.
+  useEffect(() => {
+    const fetchForecast = async () => {
+      const cityToFetch = cityName || localStorage.getItem("lastCity");
+      try {
+        const foreCastResult = await fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${cityToFetch}&cnt=5&appid=${
+            import.meta.env.VITE_APP_ID
+          }&units=metric`
+        );
+        const forecastData = await foreCastResult.json();
+        console.log(forecastData.cod);
+        if (forecastData && forecastData.cod === 200) {
+          setForeCast(forecastData);
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    fetchForecast();
+  }, []);
+
+  console.log("Forecast", foreCast); */
+
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setCityName(e.target.value);
@@ -69,7 +97,8 @@ function App() {
           temprature={weatherData.main.temp}
           feelsLikeTemprature={weatherData.main.feels_like}
           humidity={weatherData.main.humidity}
-          windSpeed={weatherData.wind.speed}
+          windSpeed={convertToKmPerHour(weatherData.wind.speed, unit)}
+          unitMetric={unit}
         />
       )}
     </>
