@@ -32,6 +32,8 @@ function App() {
         if (data.cod === 200) {
           setWeatherData(data);
           localStorage.setItem("lastCity", cityToFetch);
+        } else {
+          window.alert(`Error: ${data.message}`);
         }
       } catch (error) {
         console.error("Error fetching weather:", error);
@@ -51,8 +53,6 @@ function App() {
       clearInterval(Interval);
     };
   }, [debouncedCityName, isCelcius]);
-
-  //TODO: This is to be implemented.
 
   //useEffect to call the forecast api for 5 days.
   useEffect(() => {
