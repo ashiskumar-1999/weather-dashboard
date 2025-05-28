@@ -1,0 +1,73 @@
+.text {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.effect {
+  background-color: rgba(255, 252, 252, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  text-align: left;
+  line-height: 0.4rem;
+}
+
+/* Grid Area Definitions */
+.currentWeather {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  border-radius: 16px;
+  padding: 20px;
+  line-height: 0.5rem;
+}
+
+.temprature {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px 0px 16px 0px;
+  text-align: center;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  margin-top: -20px;
+  margin-bottom: -30px;
+}
+
+.otherdata {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.map {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.forecast {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  border-radius: 16px;
+  padding: 20px;
+}
