@@ -3,10 +3,13 @@ import "./App.css";
 import SearchBar from "./component/SearchBar/SearchBar";
 import WeatherDashboard from "./component/WeatherDashboard/WeatherDashboard";
 import { useWeather } from "./context/WeatherContext";
+import type { WeatherForeCastProps } from "./types";
 
 function App() {
   const [cityName, setCityName] = useState("");
+  const [isCelcius, setIsCelcius] = useState(true);
   const { weatherData, setWeatherData } = useWeather();
+  const unit = isCelcius ? "metric" : "imperial"; // Assign the unit value to celcius/Farenhit
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -17,7 +20,7 @@ function App() {
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${cityToFetch}&appid=${
             import.meta.env.VITE_APP_ID
-          }&units=metric`
+          }&units=${unit}`
         );
         const data = await response.json();
 
@@ -42,7 +45,7 @@ function App() {
     return () => {
       clearInterval(Interval);
     };
-  }, [cityName]);
+  }, [cityName, isCelcius]);
 
   const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -51,7 +54,13 @@ function App() {
 
   return (
     <>
-      <SearchBar cityName={cityName} onChange={handleCityChange} />
+      <SearchBar
+        cityName={cityName}
+        onChange={handleCityChange}
+        isCelcius={isCelcius}
+        onClick={() => setIsCelcius(!isCelcius)}
+      />
+
       {weatherData && weatherData.main && weatherData.wind && (
         <WeatherDashboard
           cityName={weatherData.name}

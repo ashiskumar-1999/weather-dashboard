@@ -1,3 +1,9 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
 .searchbox {
   position: relative;
   width: fit-content;
@@ -29,4 +35,16 @@
   height: 20px;
   color: black;
   pointer-events: none;
+}
+
+.button {
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(55, 54, 54);
+  cursor: pointer;
+}
+.button:focus {
+  outline: none;
 }
