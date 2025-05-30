@@ -18,14 +18,14 @@ const SearchBar = ({
     <div className={styles.container}>
       <div className={styles.searchbox}>
         <input
-          className={styles.searchbar}
+          className={styles.searchInput}
           placeholder=" Search City"
           value={cityName}
           onChange={onChange}
         />
         <Search className={styles.icon} />
       </div>
-      <button onClick={onClick} className={styles.button}>
+      <button onClick={onClick} className={styles.switchButton}>
         {isCelcius ? "Switch to Frenhit" : "Switch to celcius"}
       </button>
     </div>

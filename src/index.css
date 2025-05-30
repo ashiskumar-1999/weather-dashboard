@@ -4,6 +4,7 @@
   font-weight: 400;
   background-image: url("/public/background.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

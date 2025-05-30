@@ -9,7 +9,7 @@
   color: white;
 }
 
-.effect {
+.glassEffect {
   background-color: rgba(255, 252, 252, 0.1);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -37,7 +37,7 @@
   line-height: 0.5rem;
 }
 
-.temprature {
+.tempratureSection {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,14 +45,14 @@
   text-align: center;
 }
 
-.image {
+.weatherImage {
   width: 100px;
   height: 100px;
   margin-top: -20px;
   margin-bottom: -30px;
 }
 
-.otherdata {
+.weatherForcastDetail {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -38,7 +38,7 @@ const WeatherDashboard = ({
             <p className={styles.text}>Feels like {feelsLikeTemprature}</p>
           </div>
         </div>
-        <div className={styles.otherdata}>
+        <div className={styles.weatherForcastDetail}>
           <div>
             <Wind className={styles.text} />
             <h3 className={styles.text}>{windSpeed} km/h</h3>
@@ -49,7 +49,7 @@ const WeatherDashboard = ({
           </div>
         </div>
       </div>
-      <div className={`${styles.forecast} ${styles.effect}`}>
+      <div className={`${styles.glassEffect}`}>
         <div className={styles.forecastContainer}>
           {foreCastData?.map((data: any, index) => (
             <div key={index + 1}>
