@@ -18,10 +18,10 @@ const WeatherDashboard = ({
 }: WeatherDataProps) => {
   return (
     <div className={styles.gridContainer}>
-      <div className={`${styles.currentWeather} ${styles.effect}`}>
+      <div className={`${styles.currentWeather} ${styles.glassEffect}`}>
         <p className={styles.text}>Current Weather</p>
         <h2 className={styles.heading}>{cityName}</h2>
-        <div className={styles.temprature}>
+        <div className={styles.tempratureSection}>
           <div>
             <img
               src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
@@ -64,7 +64,7 @@ const WeatherDashboard = ({
           ))}
         </div>
       </div>
-      <div className={`${styles.forecast} ${styles.effect}`}>
+      <div className={`${styles.forecast} ${styles.glassEffect}`}>
         <h1 className={styles.heading}>Searched City</h1>
         {searchHistory &&
           searchHistory.map((data, index) => (
