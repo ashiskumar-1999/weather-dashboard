@@ -23,7 +23,7 @@ const SearchBar = ({
           value={cityName}
           onChange={onChange}
         />
-        <Search className={styles.icon} />
+        <Search className={styles.searchIcon} />
       </div>
       <button onClick={onClick} className={styles.switchButton}>
         {isCelcius ? "Switch to Frenhit" : "Switch to celcius"}
